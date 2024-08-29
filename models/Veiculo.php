@@ -12,19 +12,18 @@ use yii\data\ActiveDataProvider;
  * @property string|null $email
  *
  */
-class Cliente extends \yii\db\ActiveRecord
+class Veiculo extends \yii\db\ActiveRecord
 {
     public static function tableName()
     {
-        return 'cliente';
+        return 'veiculo';
     }
 
     public function rules()
     {
         return [
-            [['nome', 'telem'], 'required'],
-            [['telem'], 'integer', 'max' => 999999999],
-            [['nome', 'email'], 'string', 'max' => 255],
+            [['cliente_id', 'matricula', 'marca', 'modelo', 'km', 'ano'], 'required'],
+            [['matricula', 'marca', 'modelo'], 'string', 'max' => 255],
         ];
     }
 
@@ -32,15 +31,18 @@ class Cliente extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'nome' => 'Nome',
-            'telem' => 'Número de Telemóvel',
-            'email' => 'Email',
+            'cliente_id' => 'Cliente',
+            'matricula' => 'Matricula',
+            'marca' => 'Marca',
+            'modelo' => 'Modelo',
+            'km' => 'Km',
+            'ano' => 'Ano',
         ];
     }
 
     public function search()
     {
-        $query = Cliente::find();
+        $query = Veiculo::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

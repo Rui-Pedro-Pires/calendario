@@ -2,12 +2,11 @@
 
 namespace app\controllers;
 
-use Yii;
-use yii\web\Controller;
-use app\models\Cliente;
 use yii\filters\AccessControl;
+use yii\web\Controller;
+use app\models\Veiculo;
 
-class ClienteController extends Controller
+class VeiculoController extends Controller
 {
     public function behaviors()
     {
@@ -26,9 +25,6 @@ class ClienteController extends Controller
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function actions()
     {
         return [
@@ -44,7 +40,7 @@ class ClienteController extends Controller
 
     public function actionIndex()
     {
-        $searchModel = new Cliente();
+        $searchModel = new Veiculo();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -54,7 +50,7 @@ class ClienteController extends Controller
 
     public function actionCreate()
     {
-        $model = new Cliente();
+        $model = new Veiculo();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
